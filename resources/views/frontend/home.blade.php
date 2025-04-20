@@ -63,7 +63,7 @@
         <div class="row">
 
             <div class="col-md-9">
-                <div class="mb-3">
+                <div class="mb-2 mt-2">
                     <input type="text" id="searchInput" class="form-control"
                         placeholder="Search product by name or SKU">
                 </div>
