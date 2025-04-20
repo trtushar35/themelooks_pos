@@ -13,9 +13,12 @@
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>
-                <th>#</th>
+                <th>S/N</th>
                 <th>Variation Type</th>
+                <th>Color</th>
                 <th>Variation Value</th>
+                <th>Purchase Price</th>
+                <th>Selling Price</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -23,8 +26,11 @@
             @forelse($productVariation as $index => $product)
             <tr>
                 <td>{{ $index + 1 }}</td>
-                <td>{{ $product->variation_type }}</td>
-                <td>{{ $product->variation_value }}</td>
+                <td>{{ $product->variation_type ?? ''}}</td>
+                <td>{{ $product->color ?? '' }}</td>
+                <td>{{ $product->variation_value ?? '' }}</td>
+                <td>{{ $product->purchase_price ?? '' }}</td>
+                <td>{{ $product->selling_price ?? '' }}</td>
                 <td>
                     <a href="{{ route('product-variation.edit', $product->id) }}" class="btn btn-sm btn-warning">Edit</a>
                     <form action="{{ route('product-variation.destroy', $product->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this product?');">

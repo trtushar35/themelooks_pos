@@ -4,22 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ProductVariation extends Model
+class OrderItem extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $fillable = [
+        'order_id',
         'product_id',
-        'color',
-        'variation_type',
-        'variation_value',
-        'purchase_price',
-        'selling_price',
-        'status'
+        'product_name',
+        'price',
+        'quantity',
+        'total'
     ];
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 
     public function product()
     {

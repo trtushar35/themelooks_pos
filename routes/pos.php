@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Backend\OrderController as BackendOrderController;
+use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductVariationController;
+use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,12 +19,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { 
-        return view('frontend.home');
-    })->name('frontend.home');
 
-
-
+//fronted routes start
+Route::get('/', [HomeController::class, 'index'])->name('frontend.home');
+Route::post('/cart/add', [OrderController::class, 'addToCart'])->name('cart.add');
+Route::post('/cart/update', [OrderController::class, 'updateCart'])->name('cart.update');
+Route::get('/cart/view', [OrderController::class, 'getCartView'])->name('cart.view');
+Route::post('/order/place', [OrderController::class, 'placeOrder'])->name('order.place');
+//fronted routes end
 
 
 
@@ -37,12 +42,14 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('products', ProductController::class);
 
+    Route::resource('orders', BackendOrderController::class);
+
     Route::resource('product-variation', ProductVariationController::class);
     Route::get('/get-variation-values/{type}', [ProductVariationController::class, 'getVariationValues']);
 
     
 });
 
-
-
 require __DIR__.'/auth.php';
+
+//backend routes end

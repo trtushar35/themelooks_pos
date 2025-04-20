@@ -22,7 +22,10 @@ return new class extends Migration
             $table->decimal('discount', 5, 2)->default(0);
             $table->decimal('tax', 5, 2)->default(0);
             $table->string('image')->nullable();
+            
+            $table->enum('status',['Active', 'Inactive', 'Deleted'])->default('Active');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

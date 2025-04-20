@@ -39,7 +39,7 @@
                     <label for="image" class="form-label">Product Image</label>
                     <input type="file" name="image" class="form-control" onchange="previewImage(event)">
                     <img id="imagePreview"
-                        src="{{ isset($product) && $product->image ? asset('storage/' . $product->image) : '#' }}"
+                        src="{{ isset($product) && $product->image ? $product->image : '#' }}"
                         style="max-width: 200px; height: auto; {{ isset($product) && $product->image ? '' : 'display:none;' }}">
                 </div>
             </div>

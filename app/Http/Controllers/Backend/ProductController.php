@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Product::whereNull('deleted_at')->get();
         return view('backend.products.list', compact('products'));
     }
 
@@ -97,7 +97,6 @@ class ProductController extends Controller
         $product->tax = $request->tax ?? 0;
 
         if ($request->hasFile('image')) {
-            // delete old image if exists
             if ($product->image && Storage::exists('public/' . $product->image)) {
                 Storage::delete('public/' . $product->image);
             }
@@ -115,13 +114,14 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        // Delete the image if it exists
         if ($product->image && Storage::exists($product->image)) {
             Storage::delete($product->image);
         }
 
-        // Delete the product record
-        $product->delete();
+        $product->update([
+            'status' => 'Deleted',
+            'deleted_at' => now(),
+        ]);
 
         return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
