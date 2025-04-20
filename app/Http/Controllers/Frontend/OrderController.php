@@ -44,7 +44,7 @@ class OrderController extends Controller
                 'price' => $product->selling_price,
                 'quantity' => $request->quantity,
                 'max_quantity' => $product->sku,
-                'image' => $product->image, // ✅ Added product image
+                'image' => $product->image,
             ];
         }
 
@@ -81,7 +81,7 @@ class OrderController extends Controller
             if (isset($cart[$id])) {
                 $cart[$id]['quantity'] = $request->quantity;
                 $cart[$id]['max_quantity'] = $product->sku;
-                $cart[$id]['image'] = $product->image; // ✅ Make sure image is present
+                $cart[$id]['image'] = $product->image;
             }
         }
 

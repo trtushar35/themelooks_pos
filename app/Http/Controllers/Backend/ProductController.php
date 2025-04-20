@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::whereNull('deleted_at')->get();
+        $products = Product::whereNull('deleted_at')->latest()->get();
         return view('backend.products.list', compact('products'));
     }
 

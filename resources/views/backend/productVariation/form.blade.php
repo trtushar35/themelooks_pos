@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h2 class="mt-5 mb-4">{{ isset($variation) ? 'Edit Product Variation' : 'Add New Product Variation' }}</h2>
+    <h2 class="mt-2 mb-4">{{ isset($variation) ? 'Edit Product Variation' : 'Add New Product Variation' }}</h2>
     <form action="{{ isset($variation) ? route('product-variation.update', $variation->id) : route('product-variation.store') }}" method="POST">
         @csrf
         @if(isset($variation))

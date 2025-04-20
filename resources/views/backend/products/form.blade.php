@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h2 class="mt-5 mb-4">{{ isset($product) ? 'Edit Product' : 'Add New Product' }}</h2>
+        <h2 class="mt-2 mb-4">{{ isset($product) ? 'Edit Product' : 'Add New Product' }}</h2>
         <form action="{{ isset($product) ? route('products.update', $product->id) : route('products.store') }}" method="POST"
             enctype="multipart/form-data">
             @csrf

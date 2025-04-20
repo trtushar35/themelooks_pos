@@ -117,6 +117,13 @@
             </div>
 
             <div class="col-md-3">
+            @if (session('error'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+
+            @if (session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
                 <div class="card checkout-card shadow">
                     <div class="card-header bg-primary text-white">
                         <h5 class="mb-0">Checkout</h5>

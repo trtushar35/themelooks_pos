@@ -2,13 +2,11 @@
 
 @section('content')
     <div class="container">
-        <h2 class="mt-5 mb-4">Product List</h2>
+        <h2 class="mt-2 mb-4">Order List</h2>
 
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
-
-        <a href="{{ route('products.create') }}" class="btn btn-primary mb-3">Add New Product</a>
 
         <table class="table table-bordered table-striped">
             <thead class="table-dark">

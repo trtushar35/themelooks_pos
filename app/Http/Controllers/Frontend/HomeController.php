@@ -17,7 +17,7 @@ class HomeController extends Controller
             $query->where('name', 'LIKE', "%$search%")->orWhere('sku', 'LIKE', "%$search%");
         }
 
-        $products = $query->paginate(12);
+        $products = $query->orderBy('id', 'desc')->paginate(12);
         return view('frontend.home', compact('products'));
     }
 }
