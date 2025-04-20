@@ -102,7 +102,7 @@
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                                             <input type="hidden" name="quantity" value="1">
-                                            <button type="submit" class="btn btn-sm btn-outline-primary w-100">Add to cart</button>
+                                            <button type="submit" class="btn btn-sm btn-outline-success w-100">Add to cart</button>
                                         </form>
                                     </div>
                                 </div>
@@ -125,8 +125,8 @@
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
                 <div class="mt-2 card checkout-card shadow">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="mb-0">Checkout</h5>
+                    <div class="card-header text-white" style="background-color:rgb(63, 215, 108);">
+                        <h5 class="mb-0">Billing Section</h5>
                     </div>
                     <div class="card-body">
                         <div id="cart-items" style="max-height: 400px; overflow-y: auto;">
@@ -197,7 +197,7 @@
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-success w-100"
-                                {{ empty(session('cart')) ? 'disabled' : '' }}>Proceed</button>
+                                {{ empty(session('cart')) ? 'disabled' : '' }}>Place Order</button>
                         </form>
                     </div>
                 </div>
