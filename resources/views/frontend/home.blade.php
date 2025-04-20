@@ -124,7 +124,7 @@
             @if (session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
-                <div class="card checkout-card shadow">
+                <div class="mt-2 card checkout-card shadow">
                     <div class="card-header bg-primary text-white">
                         <h5 class="mb-0">Checkout</h5>
                     </div>
