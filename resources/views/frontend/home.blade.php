@@ -20,6 +20,7 @@
         .card-img-top {
             height: 100px;
             object-fit: contain;
+            cursor: pointer;
         }
 
         .card-title {
@@ -62,10 +63,11 @@
     <div class="container-fluid">
         <div class="row">
 
+            <!-- Left Product Grid -->
             <div class="col-md-9">
                 <div class="mb-2 mt-2">
                     <input type="text" id="searchInput" class="form-control"
-                        placeholder="Search product by name or SKU">
+                        placeholder="Search product by name">
                 </div>
 
                 <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-3 product-grid" id="productGrid">
@@ -73,12 +75,15 @@
                         <div class="col product-card">
                             <div class="card h-100 d-flex flex-column shadow-sm">
                                 <img src="{{ $product->image ? $product->image : 'https://via.placeholder.com/150' }}"
-                                    class="card-img-top" alt="{{ $product->name }}">
+                                    class="card-img-top preview-img"
+                                    alt="{{ $product->name }}"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#imagePreviewModal"
+                                    data-src="{{ $product->image ? $product->image : 'https://via.placeholder.com/150' }}">
 
                                 <div class="card-body text-center p-2 d-flex flex-column">
                                     <div class="card-title text-truncate">{{ $product->name }}</div>
-                                    <div class="text-muted small">{{ $product->unit_value }} | SKU: {{ $product->sku }}
-                                    </div>
+                                    <div class="text-muted small">{{ $product->unit_value }} | SKU: {{ $product->sku }}</div>
                                     <div class="text-muted small">Stock: {{ $product->sku }}</div>
 
                                     @php
@@ -90,8 +95,7 @@
                                     <div class="price-tag mt-1 mb-2">
                                         @if ($product->discount > 0)
                                             <span class="text-success fw-bold">${{ number_format($final, 2) }}</span>
-                                            <span
-                                                class="text-muted text-decoration-line-through small">${{ number_format($originalPrice, 2) }}</span>
+                                            <span class="text-muted text-decoration-line-through small">${{ number_format($originalPrice, 2) }}</span>
                                         @else
                                             <span class="fw-bold">${{ number_format($originalPrice, 2) }}</span>
                                         @endif
@@ -116,14 +120,16 @@
                 </div>
             </div>
 
+            <!-- Right Cart Checkout Section -->
             <div class="col-md-3">
-            @if (session('error'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
+                @if (session('error'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
 
-            @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
+                @if (session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+
                 <div class="mt-2 card checkout-card shadow">
                     <div class="card-header text-white" style="background-color:rgb(63, 215, 108);">
                         <h5 class="mb-0">Billing Section</h5>
@@ -136,7 +142,7 @@
                                         <div class="d-flex justify-content-between">
                                             <div class="me-3" style="width: 80px;">
                                                 <img src="{{ asset($item['image']) }}" alt="{{ $item['name'] }}"
-                                                     class="img-fluid rounded">
+                                                    class="img-fluid rounded">
                                             </div>
                                             <div>
                                                 <strong>{{ $item['name'] }}</strong>
@@ -145,9 +151,9 @@
                                             <div class="quantity-control">
                                                 <button class="btn btn-sm btn-outline-secondary decrement">-</button>
                                                 <input type="number"
-                                                       class="form-control form-control-sm quantity-input"
-                                                       value="{{ $item['quantity'] }}" min="1"
-                                                       max="{{ $item['max_quantity'] }}">
+                                                    class="form-control form-control-sm quantity-input"
+                                                    value="{{ $item['quantity'] }}" min="1"
+                                                    max="{{ $item['max_quantity'] }}">
                                                 <button class="btn btn-sm btn-outline-secondary increment">+</button>
                                             </div>
                                         </div>
@@ -161,7 +167,6 @@
                                 <p class="text-muted">Your cart is empty</p>
                             @endif
                         </div>
-                        
 
                         <div class="mt-3">
                             <div class="d-flex justify-content-between">
@@ -173,17 +178,18 @@
                             <div class="d-flex justify-content-between">
                                 <strong>Subtotal:</strong>
                                 <span id="total-amount">
-                                    ৳{{ number_format(array_sum(array_map(function ($item) {return $item['price'] * $item['quantity'];}, session('cart', []))), 2) }}
+                                    ৳{{ number_format(array_sum(array_map(function ($item) {
+                                        return $item['price'] * $item['quantity'];
+                                    }, session('cart', []))), 2) }}
                                 </span>
                             </div>
                         </div>
-                        
+
                         <h6 class="mt-4">Shipping Details</h6>
                         <form id="checkout-form" method="POST" action="{{ route('order.place') }}">
                             @csrf
                             <div class="mb-2">
-                                <input type="text" name="name" class="form-control" placeholder="Full Name"
-                                    required>
+                                <input type="text" name="name" class="form-control" placeholder="Full Name" required>
                             </div>
                             <div class="mb-2">
                                 <textarea name="address" class="form-control" rows="2" placeholder="Address" required></textarea>
@@ -205,35 +211,46 @@
         </div>
     </div>
 
+    <div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-labelledby="imagePreviewLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-transparent border-0">
+                <div class="modal-body text-center p-0">
+                    <img id="modalImage" src="" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
 
-            $('#searchInput').on('keyup', function() {
+    <script>
+        $(document).ready(function () {
+            $('#searchInput').on('keyup', function () {
                 let filter = $(this).val().toLowerCase();
-                $('.product-card').each(function() {
+                $('.product-card').each(function () {
                     let title = $(this).find('.card-title').text().toLowerCase();
                     $(this).toggle(title.includes(filter));
                 });
             });
 
-            $('.add-to-cart-form').on('submit', function(e) {
+            $('.add-to-cart-form').on('submit', function (e) {
                 e.preventDefault();
                 $.ajax({
                     url: $(this).attr('action'),
                     method: 'POST',
                     data: $(this).serialize(),
-                    success: function(response) {
+                    success: function (response) {
                         updateCart(response.cart);
                     },
-                    error: function(xhr) {
+                    error: function (xhr) {
                         alert(xhr.responseJSON.message || 'Error adding to cart');
                     }
                 });
             });
 
-            $(document).on('click', '.increment, .decrement', function() {
+            $(document).on('click', '.increment, .decrement', function () {
                 let $input = $(this).siblings('.quantity-input');
                 let newVal = parseInt($input.val()) + ($(this).hasClass('increment') ? 1 : -1);
 
@@ -243,7 +260,7 @@
                 }
             });
 
-            $(document).on('change', '.quantity-input', function() {
+            $(document).on('change', '.quantity-input', function () {
                 let newVal = parseInt($(this).val());
                 let max = parseInt($(this).attr('max'));
 
@@ -254,7 +271,7 @@
                 }
             });
 
-            $(document).on('click', '.remove-item', function() {
+            $(document).on('click', '.remove-item', function () {
                 if (confirm('Remove this item from cart?')) {
                     updateCartItem($(this).closest('.cart-item').data('id'), 0);
                 }
@@ -269,25 +286,31 @@
                         product_id: productId,
                         quantity: quantity
                     },
-                    success: function(response) {
+                    success: function (response) {
                         updateCart(response.cart);
                     },
-                    error: function(xhr) {
+                    error: function (xhr) {
                         alert(xhr.responseJSON.message || 'Error updating cart');
                     }
                 });
             }
 
             function updateCart(cart) {
-                $.get('{{ route('cart.view') }}', function(response) {
+                $.get('{{ route('cart.view') }}', function (response) {
                     $('#cart-items').html(response.cartHtml);
                     $('#total-items').text(response.totalItems);
                     $('#total-amount').text(response.totalAmount.toFixed(2));
                     $('#checkout-form button[type="submit"]').prop('disabled', response.totalItems === 0);
                 });
             }
+
+            $('.preview-img').on('click', function () {
+                let src = $(this).data('src');
+                $('#modalImage').attr('src', src);
+            });
         });
     </script>
+
 </body>
 
 </html>
