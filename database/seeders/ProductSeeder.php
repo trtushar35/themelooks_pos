@@ -23,7 +23,7 @@ class ProductSeeder extends Seeder
                 'purchase_price' => 80000.00,
                 'discount' => 5,
                 'tax' => 10,
-                'image' => 'products/product1.jpg',
+                'image' => 'products/product1.jpeg',
                 'status' => 'Active',
             ],
             [
@@ -35,7 +35,7 @@ class ProductSeeder extends Seeder
                 'purchase_price' => 75000.00,
                 'discount' => 8,
                 'tax' => 10,
-                'image' => 'products/product2.jpg',
+                'image' => 'products/product2.jpeg',
                 'status' => 'Active',
             ],
             [
@@ -71,7 +71,7 @@ class ProductSeeder extends Seeder
                 'purchase_price' => 79000.00,
                 'discount' => 7,
                 'tax' => 9,
-                'image' => 'products/product5.jpg',
+                'image' => 'products/product5.jpeg',
                 'status' => 'Active',
             ],
             [
@@ -95,7 +95,7 @@ class ProductSeeder extends Seeder
                 'purchase_price' => 55000.00,
                 'discount' => 6,
                 'tax' => 5,
-                'image' => 'products/product7.png',
+                'image' => 'products/product7.jpeg',
                 'status' => 'Active',
             ],
             [
@@ -119,7 +119,7 @@ class ProductSeeder extends Seeder
                 'purchase_price' => 65000.00,
                 'discount' => 10,
                 'tax' => 12,
-                'image' => 'products/product9.jpg',
+                'image' => 'products/product9.jpeg',
                 'status' => 'Active',
             ],
             [
@@ -131,7 +131,7 @@ class ProductSeeder extends Seeder
                 'purchase_price' => 25000.00,
                 'discount' => 5,
                 'tax' => 8,
-                'image' => 'products/product10.jpg',
+                'image' => 'products/product10.jpeg',
                 'status' => 'Active',
             ],
             [
@@ -143,7 +143,7 @@ class ProductSeeder extends Seeder
                 'purchase_price' => 4400.00,
                 'discount' => 7,
                 'tax' => 10,
-                'image' => 'products/product11.jpg',
+                'image' => 'products/product11.jpeg',
                 'status' => 'Active',
             ],
             [
@@ -155,7 +155,7 @@ class ProductSeeder extends Seeder
                 'purchase_price' => 6500.00,
                 'discount' => 15,
                 'tax' => 5,
-                'image' => 'products/product12.jpg',
+                'image' => 'products/product12.jpeg',
                 'status' => 'Active',
             ],
             [
@@ -167,7 +167,7 @@ class ProductSeeder extends Seeder
                 'purchase_price' => 32000.00,
                 'discount' => 5,
                 'tax' => 8,
-                'image' => 'products/product13.jpg',
+                'image' => 'products/product13.jpeg',
                 'status' => 'Active',
             ],
             [
@@ -179,7 +179,7 @@ class ProductSeeder extends Seeder
                 'purchase_price' => 9300.00,
                 'discount' => 6,
                 'tax' => 9,
-                'image' => 'products/product14.jpg',
+                'image' => 'products/product14.jpeg',
                 'status' => 'Active',
             ],
             [
@@ -191,7 +191,7 @@ class ProductSeeder extends Seeder
                 'purchase_price' => 8110.00,
                 'discount' => 8,
                 'tax' => 5,
-                'image' => 'products/product15.jpg',
+                'image' => 'products/product15.jpeg',
                 'status' => 'Active',
             ],
             [
@@ -203,7 +203,7 @@ class ProductSeeder extends Seeder
                 'purchase_price' => 2350.00,
                 'discount' => 10,
                 'tax' => 8,
-                'image' => 'products/product16.jpg',
+                'image' => 'products/product16.jpeg',
                 'status' => 'Active',
             ],
             [
@@ -215,7 +215,7 @@ class ProductSeeder extends Seeder
                 'purchase_price' => 65750.00,
                 'discount' => 5,
                 'tax' => 7,
-                'image' => 'products/product17.jpg',
+                'image' => 'products/product17.jpeg',
                 'status' => 'Active',
             ]
         ];
