@@ -216,7 +216,7 @@ class ProductSeeder extends Seeder
                 'discount' => 5,
                 'tax' => 7,
                 'image' => 'products/product17.jpeg',
-                'status' => 'Active',
+                'status' => 'Active', 
             ]
         ];
 
