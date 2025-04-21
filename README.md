@@ -21,6 +21,7 @@ A Laravel-based web application.
 5. Create a new MySQL database named "themelooks"
 6. php artisan key:generate
 7. php artisan migrate:fresh --seed
+8. php artisan storage:link
 
 ---
 
