@@ -32,5 +32,9 @@ A Laravel-based web application.
 
 ---
 
+## 🔐 Admin Credentials
+    email: admin@gmail.com
+    password: asdasdasd
+
 ## 👨‍💻 Author
 Md. Tahmidur Rahman Tushar GitHub: @trtushar35 Email: trtushar35@gmail.com Phone: +8801772195188
